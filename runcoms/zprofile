@@ -17,15 +17,8 @@ fi
 # Editors
 #
 
-if [[ -z "$EDITOR" ]]; then
-  export EDITOR='nano'
-fi
-if [[ -z "$VISUAL" ]]; then
-  export VISUAL='nano'
-fi
-if [[ -z "$PAGER" ]]; then
-  export PAGER='less'
-fi
+export EDITOR='nvim'
+export PAGER='bat'
 
 #
 # Language
@@ -55,19 +48,10 @@ path=(
   $path
 )
 
-#
-# Less
-#
+# Add Homebrew provide shell completions
+# https://docs.brew.sh/Shell-Completion
+FPATH="/opt/homebrew/share/zsh/site-functions:/Users/clive/.zsh/completion:${FPATH}"
 
-# Set the default Less options.
-# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
-# Remove -X to enable it.
-if [[ -z "$LESS" ]]; then
-  export LESS='-g -i -M -R -S -w -X -z-4'
-fi
-
-# Set the Less input preprocessor.
-# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
-if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
-  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
-fi
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/Users/clive/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu17.40.19-ca-jdk17.0.6-macosx_aarch64.tar.gz/zulu17.40.19-ca-jdk17.0.6-macosx_aarch64"
+# <<< JVM installed by coursier <<<
