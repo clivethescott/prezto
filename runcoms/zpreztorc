@@ -29,16 +29,23 @@ zstyle ':prezto:*:*' color 'yes'
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
-zstyle ':prezto:load' pmodule \
-  'archive' \
-  'completion' \
-  'history-substring-search' \
-  'syntax-highlighting' \
-  'autosuggestions' \
-  'tmux' \
-  'git' \
-  'prompt'
-
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  zstyle ':prezto:load' pmodule \
+    'archive' \
+    'completion' \
+    'history-substring-search' \
+    'syntax-highlighting' \
+    'autosuggestions' \
+    'tmux' \
+    'git' \
+    'prompt'
+else
+  zstyle ':prezto:load' pmodule \
+    'completion' \
+    'history-substring-search' \
+    'syntax-highlighting' \
+    'autosuggestions'
+fi
 #
 # Autosuggestions
 #

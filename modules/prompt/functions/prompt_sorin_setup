@@ -88,12 +88,22 @@ function prompt_sorin_async_tasks {
   async_job prompt_sorin prompt_sorin_async_git "$PWD"
 }
 
+function aws_prof {
+  local profile="${AWS_PROFILE:=default}"
+
+  echo -n "%{$fg_bold[blue]%}aws:(%{$fg[yellow]%}${profile}%{$fg_bold[blue]%})%{$reset_color%} "
+}
+
 function prompt_sorin_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
   # Format PWD.
   _prompt_sorin_pwd=$(prompt-pwd)
+
+  if [[ -n "$AWS_PROFILE" ]]; then
+    _prompt_aws_profile=$(aws_prof)
+  fi
 
   # Handle updating git data. We also clear the git prompt data if we're in a
   # different git root now.
@@ -167,12 +177,13 @@ function prompt_sorin_setup {
 
   _prompt_sorin_git=''
   _prompt_sorin_pwd=''
+  _prompt_aws_profile=''
 
   # Define prompts.
   PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT='$python_info[virtualenv]${editor_info[overwrite]}%(?:: %F{1}'
   RPROMPT+=${show_return}
-  RPROMPT+='%f)${VIM:+" %B%F{6}V%f%b"}${_prompt_sorin_git}'
+  RPROMPT+='%f)${VIM:+" %B%F{6}V%f%b"}${_prompt_aws_profile} ${_prompt_sorin_git}'
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
 
