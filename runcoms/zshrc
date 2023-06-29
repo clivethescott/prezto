@@ -9,6 +9,10 @@
 # Source this here and not in zshenv to prefix in $PATH
 source $ZDOTDIR/exports.zsh
 
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  ZSH_TMUX_AUTOSTART=true
+fi
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -29,6 +33,11 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
 
+export AWS_PROFILE=mercury-test
+if [[ -z "${AWS_PROFILE}" ]]; then
+  export RPROMPT='$(aws_prof)'
+fi
+#
 # Switches cursor depending on vi mode
 cursor_mode
 # Additional vi-mode text objects
