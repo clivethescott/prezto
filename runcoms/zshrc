@@ -23,12 +23,13 @@ fi
 # Plugin manager
 source /opt/homebrew/share/antigen/antigen.zsh
 antigen use oh-my-zsh
-antigen bundle vi-mode
+antigen bundle jeffreytse/zsh-vi-mode
+# antigen bundle vi-mode
 antigen bundle fzf
 # antigen theme af-magic
 antigen apply
 
-source $ZDOTDIR/setopt.zsh 
+source $ZDOTDIR/setopt.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
@@ -56,7 +57,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-# > FZF 
+# > FZF
 # File previews with Ctrl-T, --exit-0 automatically exits when the list is empty.
 # Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
 
@@ -80,6 +81,7 @@ bindkey "^E" fzf-file-widget
 
 bindkey "^P" history-substring-search-up
 bindkey "^N" history-substring-search-down
+bindkey '^y' autosuggest-accept
 
 # Disable Ctrl-S Flow control
 stty -ixon
