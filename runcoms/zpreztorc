@@ -38,13 +38,14 @@ zstyle ':prezto:module:history' histsize 50000
 # The order matters.
 # history is Needed for autosuggestions to work properly
 
+# Follow order recommented in syntax-highlighting README
 if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
   zstyle ':prezto:load' pmodule \
     'archive' \
     'completion' \
-    'history-substring-search' \
     'history' \
     'syntax-highlighting' \
+    'history-substring-search' \
     'autosuggestions' \
     'tmux' \
     'git' \
@@ -57,9 +58,9 @@ if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
 else
   zstyle ':prezto:load' pmodule \
     'completion' \
-    'history-substring-search' \
     'history' \
     'syntax-highlighting' \
+    'history-substring-search' \
     'autosuggestions'
 
 fi
